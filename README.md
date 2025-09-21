@@ -1,12 +1,97 @@
-# React + Vite
+# 📊 React Dashboard with Dark Mode
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![React](https://img.shields.io/badge/React-18.0-blue?logo=react)](https://react.dev/)  
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.0-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)  
+[![Vite](https://img.shields.io/badge/Vite-5.0-646CFF?logo=vite)](https://vitejs.dev/)  
+[![Recharts](https://img.shields.io/badge/Recharts-Visualizations-orange)](https://recharts.org/)  
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-Currently, two official plugins are available:
+A modern, responsive analytics dashboard built with **React**, **Tailwind CSS**, and **Recharts**.  
+Includes **Dark Mode**, reusable components, and interactive charts.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
+- 📱 **Responsive layout** with multiple cards & charts  
+- 🌗 **Light/Dark theme toggle** (works across all components)  
+- 📊 **Recharts visualizations** (Bar, Line, Pie/Donut, Area)  
+- 🎨 **Tailwind CSS utilities** for styling  
+- 🧩 **Reusable card components** (Stats, Revenue, Products, Map, etc.)  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📂 Project Structure
+src/
+┣ assets/ # Icons, images, SVGs
+┣ components/ # Reusable UI components (cards, charts, tables)
+┣ pages/ # Dashboard pages (Dashboard, Orders, etc.)
+┣ App.jsx # Routes and layout
+┣ main.jsx # Entry point (ThemeProvider + Router + Dark mode)
+┗ index.css # Tailwind setup
+
+yaml
+Copy code
+
+---
+
+## 🛠️ Tech Stack
+- ⚛️ **React** – frontend framework  
+- 🛣️ **React Router** – routing between pages  
+- 🎨 **Tailwind CSS** – styling, dark mode, responsive design  
+- 📊 **Recharts** – charts and graphs library  
+- ⚡ **Vite** – fast build tool & dev server  
+
+---
+
+## ⚙️ Installation
+
+Clone the repository:
+```bash
+git clone https://github.com/your-username/dashboard-darkmode.git
+cd dashboard-darkmode
+Install dependencies:
+
+bash
+Copy code
+npm install
+# or
+yarn install
+Run locally:
+
+bash
+Copy code
+npm run dev
+Now open http://localhost:5173 in your browser 🚀
+
+🌗 Dark Mode
+Dark mode is powered by Tailwind’s class-based dark mode.
+In main.jsx, a dark class is toggled on the <html> element:
+
+js
+Copy code
+useEffect(() => {
+  document.documentElement.classList[theme === "dark" ? "add" : "remove"]("dark");
+}, [theme]);
+Light Mode → uses Tailwind’s default colors
+
+Dark Mode → applies dark: styles (backgrounds, text, chart colors)
+
+📦 Build
+Create a production build:
+
+bash
+Copy code
+npm run build
+The build will be generated in the /dist folder.
+
+🤝 Contributing
+Fork this repository
+
+Create a new branch with your feature/fix
+
+Commit your changes
+
+Open a Pull Request 🚀
+
+📝 License
+MIT License © 2025 Pankaj Yadav
