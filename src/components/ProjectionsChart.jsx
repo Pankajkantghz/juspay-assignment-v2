@@ -20,82 +20,59 @@ const data = [
 export default function ProjectionsChart() {
   return (
     <div
-      className="rounded-xl shadow flex flex-col gap-4"
+      className="rounded-xl shadow flex flex-col gap-4 
+                 bg-[#F7F9FB] text-[#1C1C1C] 
+                 dark:bg-gray-900 dark:text-gray-100
+                 transition-colors duration-300"
       style={{
         width: "432px",
         height: "252px",
         minWidth: "400px",
         padding: "24px",
-        backgroundColor: "#F7F9FB",
       }}
     >
-      {/* Title (Text) */}
-      <h3
-        style={{
-          width: "384px",
-          height: "20px",
-          fontFamily: "Inter, sans-serif",
-          fontSize: "14px",
-          fontWeight: 600,
-          lineHeight: "20px",
-          color: "#1C1C1C",
-        }}
-      >
+      {/* Title */}
+      <h3 className="text-[14px] font-semibold leading-[20px]">
         Projections vs Actuals
       </h3>
 
       {/* Chart Frame */}
-      <div
-        className="flex"
-        style={{
-          width: "384px",
-          height: "168px",
-          gap: "16px",
-          flexDirection: "row",
-        }}
-      >
-        {/* Left Text (Y Axis labels) */}
-        <div
-          className="flex flex-col justify-between"
-          style={{
-            width: "26px",
-            height: "168px",
-            fontFamily: "Inter, sans-serif",
-            fontSize: "12px",
-            lineHeight: "18px",
-            color: "#1C1C1C",
-            textAlign: "right",
-          }}
-        >
+      <div className="flex gap-4" style={{ width: "384px", height: "168px" }}>
+        {/* Custom Y axis labels */}
+        <div className="flex flex-col justify-between text-[12px] leading-[18px] text-[#1C1C1C] dark:text-gray-300">
           {[0, 10, 20, 30].map((v) => (
             <span key={v}>{v}M</span>
           ))}
         </div>
 
-        {/* Chart Area (grid lines + vertical bars + bottom text) */}
-        <div
-          className="flex flex-col justify-between"
-          style={{ width: "342px", height: "168px" }}
-        >
+        {/* Chart Area */}
+        <div className="flex flex-col justify-between" style={{ width: "342px", height: "168px" }}>
           {/* Grid + Bars */}
           <div style={{ flex: 1, position: "relative" }}>
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={data} barSize={32}>
-                {/* Line (horizontal grid) */}
-                <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                {/* Horizontal Grid */}
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  vertical={false}
+                  stroke="#E5E7EB"               // light mode grid
+                />
 
-                {/* Vertical Bar (Bars) */}
-                <Bar dataKey="value" fill="#A8C5DA" radius={[6, 6, 0, 0]} />
+                {/* Bars */}
+                <Bar dataKey="value" fill="#60A5FA" radius={[6, 6, 0, 0]} /> 
 
-                {/* Hidden axes (we render our own text) */}
                 <XAxis dataKey="name" hide />
                 <YAxis hide domain={[0, 30]} />
 
+                {/* Tooltip responsive to dark mode */}
                 <Tooltip
                   cursor={{ fill: "rgba(0,0,0,0.05)" }}
-                  wrapperStyle={{
+                  contentStyle={{
+                    backgroundColor: "var(--tooltip-bg, white)",
+                    color: "var(--tooltip-text, black)",
+                    borderRadius: "6px",
                     fontSize: "12px",
-                    fontFamily: "Inter, sans-serif",
+                    border: "none",
                   }}
                   formatter={(value) => [`${value}M`, "Value"]}
                 />
@@ -103,23 +80,10 @@ export default function ProjectionsChart() {
             </ResponsiveContainer>
           </div>
 
-          {/* Bottom Text (X Axis labels) */}
-          <div
-            className="flex justify-between"
-            style={{
-              width: "342px",
-              height: "18px",
-              fontFamily: "Inter, sans-serif",
-              fontSize: "12px",
-              fontWeight: 400,
-              lineHeight: "18px",
-              letterSpacing: "0px",
-              color: "#1C1C1C",
-              textAlign: "center",
-            }}
-          >
+          {/* Bottom labels (X axis) */}
+          <div className="flex justify-between text-[12px] text-[#1C1C1C] dark:text-gray-300">
             {data.map((d, i) => (
-              <span key={i} style={{ width: "57px" }}>
+              <span key={i} className="w-[57px] text-center">
                 {d.name}
               </span>
             ))}

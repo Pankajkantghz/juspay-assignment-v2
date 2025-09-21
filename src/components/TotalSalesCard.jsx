@@ -9,7 +9,7 @@ import {
 } from "recharts";
 import { useState } from "react";
 
-// Data with actual values
+// Data
 const data = [
   { name: "Direct", value: 300.56, color: "#1C1C1C" },    // Black
   { name: "Affiliate", value: 135.18, color: "#BAEDBD" }, // Mint
@@ -25,7 +25,8 @@ const CustomTooltip = ({ active, payload }) => {
     const val = payload[0].value;
     const percent = ((val / total) * 100).toFixed(1);
     return (
-      <div className="backdrop-blur-md rounded-lg px-3 py-1 bg-[#1C1C1C]/80 text-white text-xs shadow">
+      <div className="backdrop-blur-md rounded-lg px-3 py-1 
+                      bg-black/80 text-white text-xs shadow">
         {percent}%
       </div>
     );
@@ -33,10 +34,9 @@ const CustomTooltip = ({ active, payload }) => {
   return null;
 };
 
-// 🟢 Custom arc shape (round one side, smooth other side)
+// Custom Arc (rounded pie slices)
 const CustomArc = (props) => {
   const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } = props;
-
   return (
     <Sector
       cx={cx}
@@ -46,8 +46,7 @@ const CustomArc = (props) => {
       startAngle={startAngle}
       endAngle={endAngle}
       fill={fill}
-      cornerRadius={100} // this makes *one side* round (like caps)
-      // 👉 Trick: we'll let paddingAngle create the subtle curve on the other side.
+      cornerRadius={100}
     />
   );
 };
@@ -61,10 +60,15 @@ export default function TotalSalesCard() {
       : ((data[0].value / total) * 100).toFixed(1);
 
   return (
-    <div className="w-[202px] min-w-[200px] max-w-[272px] h-[344px] bg-[#F7F9FB] rounded-[16px] p-6 flex flex-col gap-4">
-      
+    <div
+      className="w-[202px] min-w-[200px] max-w-[272px] h-[344px] 
+                 rounded-[16px] p-6 flex flex-col gap-4
+                 bg-[#F7F9FB] text-[#1C1C1C] 
+                 dark:bg-gray-900 dark:text-gray-100 
+                 transition-colors duration-300"
+    >
       {/* Title */}
-      <h3 className="text-[14px] font-semibold leading-[20px] text-[#1C1C1C]">
+      <h3 className="text-[14px] font-semibold leading-[20px]">
         Total Sales
       </h3>
 
@@ -79,9 +83,9 @@ export default function TotalSalesCard() {
               cy="50%"
               innerRadius={40}
               outerRadius={60}
-              paddingAngle={12}     // gap gives us mild curve instead of hard cut
+              paddingAngle={12}
               onMouseLeave={() => setHoveredIndex(null)}
-              shape={<CustomArc />} // use custom arc component
+              shape={<CustomArc />}
             >
               {data.map((entry, index) => (
                 <Cell
@@ -91,14 +95,14 @@ export default function TotalSalesCard() {
                 />
               ))}
 
-              {/* Center label */}
+              {/* Center label flips color */}
               <Label
                 value={`${displayValue}%`}
                 position="center"
-                className="text-[12px] font-semibold fill-[#1C1C1C]"
+                className="text-[12px] font-semibold 
+                           fill-[#1C1C1C] dark:fill-gray-100"
               />
             </Pie>
-
             <Tooltip content={<CustomTooltip />} />
           </PieChart>
         </ResponsiveContainer>
@@ -116,11 +120,13 @@ export default function TotalSalesCard() {
                 className="w-2 h-2 rounded-full"
                 style={{ backgroundColor: item.color }}
               />
-              <span className="text-[12px] leading-[18px] text-[#1C1C1C]">
+              <span className="text-[12px] leading-[18px] 
+                               text-[#1C1C1C] dark:text-gray-200">
                 {item.name}
               </span>
             </span>
-            <span className="text-[12px] leading-[18px] text-[#1C1C1C]">
+            <span className="text-[12px] leading-[18px] 
+                             text-[#1C1C1C] dark:text-gray-200">
               ${item.value.toFixed(2)}
             </span>
           </div>

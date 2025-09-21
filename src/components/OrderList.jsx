@@ -77,35 +77,35 @@ export default function OrderList() {
 
   return (
     <div 
-      className="flex flex-col bg-white shadow rounded border border-gray-200"
+      className="flex flex-col bg-white dark:bg-black shadow rounded border border-gray-200 dark:border-gray-700 text-black dark:text-white"
       style={{width:"1172px", gap:"12px"}}
     >
       {/* === Toolbar === */}
-      <div className="flex items-center justify-between bg-[#F7F9FB] px-3 rounded-t" style={{height:"44px"}}>
+      <div className="flex items-center justify-between bg-gray-50 dark:bg-gray-900 px-3 rounded-t" style={{height:"44px"}}>
         <div className="flex items-center gap-3">
           <button>＋</button>
           <button>≡</button>
           <button>⇅</button>
         </div>
         <div className="relative">
-          <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400"/>
+          <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 dark:text-gray-300"/>
           <input
             value={query}
             onChange={(e)=>setQuery(e.target.value)}
             placeholder="Search"
-            className="w-48 h-8 pl-8 pr-3 rounded border border-gray-300 text-sm"
+            className="w-48 h-8 pl-8 pr-3 rounded border border-gray-300 dark:border-gray-600 text-sm bg-white dark:bg-gray-700 text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
           />
         </div>
       </div>
 
       {/* === Table (Flex Columns) === */}
-      <div className="flex border-t" style={{width:"1172px", maxHeight:"440px", overflowY:"auto"}}>
+      <div className="flex border-t border-gray-200 dark:border-gray-700" style={{width:"1172px", maxHeight:"440px", overflowY:"auto"}}>
         
         {/* Col: Checkbox */}
         <div className="flex flex-col w-[32px]">
-          <div className="h-10 flex items-center justify-center border-b"><input type="checkbox"/></div>
+          <div className="h-10 flex items-center justify-center border-b border-gray-200 dark:border-gray-700"><input type="checkbox"/></div>
           {pageRows.map(r=>(
-            <div key={r.id} className="h-10 flex items-center justify-center border-b">
+            <div key={r.id} className="h-10 flex items-center justify-center border-b border-gray-200 dark:border-gray-700">
               <input type="checkbox"/>
             </div>
           ))}
@@ -113,15 +113,15 @@ export default function OrderList() {
 
         {/* Col: Order ID */}
         <div className="flex flex-col w-[120px]">
-          <div className="h-10 flex items-center border-b font-medium px-2">Order ID</div>
-          {pageRows.map(r=>(<div key={r.id} className="h-10 flex items-center border-b px-2">{r.id}</div>))}
+          <div className="h-10 flex items-center border-b border-gray-200 dark:border-gray-700 font-medium px-2">Order ID</div>
+          {pageRows.map(r=>(<div key={r.id} className="h-10 flex items-center border-b border-gray-200 dark:border-gray-700 px-2">{r.id}</div>))}
         </div>
 
         {/* Col: User */}
         <div className="flex flex-col w-[200px]">
-          <div className="h-10 flex items-center border-b font-medium px-2">User</div>
+          <div className="h-10 flex items-center border-b border-gray-200 dark:border-gray-700 font-medium px-2">User</div>
           {pageRows.map(r=>(
-            <div key={r.id} className="h-10 flex items-center gap-2 border-b px-2">
+            <div key={r.id} className="h-10 flex items-center gap-2 border-b border-gray-200 dark:border-gray-700 px-2">
               <img src={r.user.avatar} alt="" className="h-7 w-7 rounded-full"/>
               {r.user.name}
             </div>
@@ -130,22 +130,22 @@ export default function OrderList() {
 
         {/* Col: Project */}
         <div className="flex flex-col flex-1">
-          <div className="h-10 flex items-center border-b font-medium px-2">Project</div>
-          {pageRows.map(r=>(<div key={r.id} className="h-10 flex items-center border-b px-2">{r.project}</div>))}
+          <div className="h-10 flex items-center border-b border-gray-200 dark:border-gray-700 font-medium px-2">Project</div>
+          {pageRows.map(r=>(<div key={r.id} className="h-10 flex items-center border-b border-gray-200 dark:border-gray-700 px-2">{r.project}</div>))}
         </div>
 
         {/* Col: Address */}
         <div className="flex flex-col flex-1">
-          <div className="h-10 flex items-center border-b font-medium px-2">Address</div>
-          {pageRows.map(r=>(<div key={r.id} className="h-10 flex items-center border-b px-2">{r.address}</div>))}
+          <div className="h-10 flex items-center border-b border-gray-200 dark:border-gray-700 font-medium px-2">Address</div>
+          {pageRows.map(r=>(<div key={r.id} className="h-10 flex items-center border-b border-gray-200 dark:border-gray-700 px-2">{r.address}</div>))}
         </div>
 
         {/* Col: Date */}
         <div className="flex flex-col w-[160px]">
-          <div className="h-10 flex items-center border-b font-medium px-2">Date</div>
+          <div className="h-10 flex items-center border-b border-gray-200 dark:border-gray-700 font-medium px-2">Date</div>
           {pageRows.map(r=>(
-            <div key={r.id} className="h-10 flex items-center gap-1 border-b px-2 text-gray-600">
-              <CalendarIcon className="h-4 w-4 text-gray-400"/>
+            <div key={r.id} className="h-10 flex items-center gap-1 border-b border-gray-200 dark:border-gray-700 px-2 text-gray-600 dark:text-gray-300">
+              <CalendarIcon className="h-4 w-4 text-gray-400 dark:text-gray-300"/>
               {r.date}
             </div>
           ))}
@@ -153,17 +153,17 @@ export default function OrderList() {
 
         {/* Col: Status */}
         <div className="flex flex-col w-[150px]">
-          <div className="h-10 flex items-center border-b font-medium px-2">Status</div>
+          <div className="h-10 flex items-center border-b border-gray-200 dark:border-gray-700 font-medium px-2">Status</div>
           {pageRows.map(r=>(
-            <div key={r.id} className="h-10 flex items-center border-b px-2">
+            <div key={r.id} className="h-10 flex items-center border-b border-gray-200 dark:border-gray-700 px-2">
               <select
                 value={r.status}
                 onChange={(e)=>updateStatus(r.id,e.target.value)}
-                className="bg-transparent text-sm"
+                className="bg-transparent dark:bg-gray-800 text-sm"
                 style={{color:statusColors[r.status]}}
               >
                 {Object.keys(statusColors).map(st=>(
-                  <option key={st} value={st} style={{color:statusColors[st]}}>{st}</option>
+                  <option key={st} value={st} style={{color:statusColors[st], background: "#fff"}}>{st}</option>
                 ))}
               </select>
             </div>
@@ -172,36 +172,37 @@ export default function OrderList() {
 
         {/* Col: Actions */}
         <div className="flex flex-col w-[50px]">
-          <div className="h-10 border-b"></div>
+          <div className="h-10 border-b border-gray-200 dark:border-gray-700"></div>
           {pageRows.map(r=>(
-            <div key={r.id} className="h-10 flex items-center border-b px-2 text-gray-500">
+            <div key={r.id} className="h-10 flex items-center border-b border-gray-200 dark:border-gray-700 px-2 text-gray-500 dark:text-gray-400">
               <DotsVertical className="h-4 w-4"/>
             </div>
           ))}
         </div>
       </div>
 
-     
       {/* === Pagination === */}
-<div 
-  className="flex items-center gap-2 rounded px-2 self-end"
-  style={{width:"244px", height:"28px"}}
->
-  <button disabled={page===1} onClick={()=>setPage(page-1)} className="px-1">{'<'}</button>
-  {Array.from({length:totalPages}).map((_,i)=>{
-    const p=i+1
-    return (
-      <button
-        key={p}
-        onClick={()=>setPage(p)}
-        className={`h-7 w-7 rounded ${p===page ? "bg-gray-900 text-white" : "hover:bg-gray-100"}`}
+      <div 
+        className="flex items-center gap-2 rounded px-2 self-end"
+        style={{width:"244px", height:"28px"}}
       >
-        {p}
-      </button>
-    )
-  })}
-  <button disabled={page===totalPages} onClick={()=>setPage(page+1)} className="px-1">{'>'}</button>
-</div>
+        <button disabled={page===1} onClick={()=>setPage(page-1)} className="px-1">{'<'}</button>
+        {Array.from({length:totalPages}).map((_,i)=>{
+          const p=i+1
+          return (
+            <button
+              key={p}
+              onClick={()=>setPage(p)}
+              className={`h-7 w-7 rounded ${p===page 
+                ? "bg-gray-900 text-white dark:bg-white dark:text-black" 
+                : "hover:bg-gray-100 dark:hover:bg-gray-700"}`}
+            >
+              {p}
+            </button>
+          )
+        })}
+        <button disabled={page===totalPages} onClick={()=>setPage(page+1)} className="px-1">{'>'}</button>
+      </div>
     </div>
   )
 }

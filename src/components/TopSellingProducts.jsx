@@ -8,16 +8,25 @@ export default function TopSellingProducts() {
   ];
 
   return (
-    <div className="w-[662px] min-w-[662px] bg-[#F7F9FB] rounded-[16px] p-6 flex flex-col gap-1">
+    <div
+      className="w-[662px] min-w-[662px] rounded-[16px] p-6 flex flex-col gap-1
+                 bg-[#F7F9FB] text-[#1C1C1C]
+                 dark:bg-gray-900 dark:text-gray-100
+                 transition-colors duration-300"
+    >
       {/* Title */}
-      <h3 className="text-[14px] font-semibold leading-[20px] text-[#1C1C1C] w-[614px] h-[20px]">
+      <h3 className="text-[14px] font-semibold leading-[20px]">
         Top Selling Products
       </h3>
 
       {/* Table */}
       <div className="w-[614px] h-[264px] flex flex-col">
         {/* Header Row */}
-        <div className="flex border-b border-[#F3F5F7] pb-2 text-[12px] leading-[18px] text-[#1C1C1C]/40 font-normal">
+        <div
+          className="flex pb-2 text-[12px] leading-[18px] font-normal
+                     border-b border-[#F3F5F7] text-[#1C1C1C]/40
+                     dark:border-gray-700 dark:text-gray-400"
+        >
           <div className="w-[224px] text-left">Name</div>
           <div className="w-[130px] text-right">Price</div>
           <div className="w-[130px] text-right">Quantity</div>
@@ -25,11 +34,13 @@ export default function TopSellingProducts() {
         </div>
 
         {/* Data Rows */}
-        <div className="flex flex-col flex-1 text-[14px] leading-[20px] text-[#1C1C1C]">
+        <div className="flex flex-col flex-1 text-[14px] leading-[20px]">
           {products.map((p, idx) => (
             <div
               key={idx}
-              className="flex h-[40px] items-center border-b border-[#F3F5F7] last:border-none"
+              className="flex h-[40px] items-center 
+                         border-b border-[#F3F5F7] last:border-none
+                         dark:border-gray-700"
             >
               <div className="w-[224px] text-left">{p.name}</div>
               <div className="w-[130px] text-right">{p.price}</div>
